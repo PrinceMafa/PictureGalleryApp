@@ -146,3 +146,8 @@ input[name="rad"]{
 #rad3:checked ~ .a{
     margin-left: 40%;
 }
+@media (max-width: 584px) {
+    .container{
+        max-width: 700px;
+    }
+}

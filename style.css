@@ -45,6 +45,8 @@ form .text_field{
     height: 40px;
     font-size: 16px;
     border: none;
+    background: none;
+    outline: none;
 }
 .text_field label{
     position: absolute;
@@ -62,9 +64,24 @@ form .text_field{
     content: '';
     top: 40px;
     left: 0;
-    width: 100%;
+    width: 0%;
     height: 2px;
     background: #71b7e6;
+    transition: .5s;
+}
+.text_field input:focus ~ label,
+.text_field input:valid ~ label{
+    top: -5px;
+    color: rgb(45, 43, 184);
+}
+.text_field input:focus ~ span::before,
+.text_field input:valid ~ span::before{
+    width: 100%;
+}
+.pass{
+    margin: -5px 0 50px 5px;
+    color: #b62f2f;
+    cursor: default;
 }
 .container1{
     max-width: 700px;
@@ -110,6 +127,7 @@ form .User-Information .input-box{
     border: 1px solid #ccc;
     padding-left: 15px;
     font-size: 16;
+    transition: all .3s ease;
 
 }
 .User-Information .input-box input:focus,
@@ -137,4 +155,32 @@ form .gender-details .category{
     border-radius: 50%;
     margin-right: 10px;
     border: 5px solid transparent;
+}
+#dot1:checked ~ .category label .one,
+#dot2:checked ~ .category label .two,
+#dot3:checked ~ .category label .three{
+    border-color: #9b59b6;
+    background: #71b7e6;
+}
+form input[type="radio"]{
+    display: none;
+}
+form .button{
+    height: 45px;
+    margin: 45px 0;
+}
+form .button input{
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 18px;
+    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+}
+@media (max-width: 584px) {
+    .container1{
+        max-width: 700px;
+    }
 }
