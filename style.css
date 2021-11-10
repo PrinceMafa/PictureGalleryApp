@@ -4,7 +4,9 @@
     box-sizing: border-box;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
-
+title{
+    align-items: center;
+}
 body{
     display: flex;
     height: 100hv;
