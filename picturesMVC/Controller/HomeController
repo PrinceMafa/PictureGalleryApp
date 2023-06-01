@@ -1,0 +1,36 @@
+public class HomeController : Controller
+{
+    private PictureRepository pictureRepository;
+
+    public HomeController()
+    {
+        pictureRepository = new PictureRepository();
+    }
+
+    [Authorize]
+    public ActionResult Index()
+    {
+        var pictures = pictureRepository.GetPictures();
+        return View(pictures);
+    }
+
+    [Authorize]
+    public ActionResult Upload()
+    {
+        return View();
+    }
+
+    [Authorize]
+    [HttpPost]
+    public ActionResult Upload(PictureModel picture)
+    {
+        if (ModelState.IsValid)
+        {
+            // Save the picture and its metadata
+            pictureRepository.AddPicture(picture);
+            return RedirectToAction("Index");
+        }
+
+        return View();
+    }
+}

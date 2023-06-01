@@ -1,0 +1,20 @@
+public class PictureRepository
+{
+    private readonly YourDbContext dbContext;
+
+    public PictureRepository(YourDbContext dbContext)
+    {
+        this.dbContext = dbContext;
+    }
+
+    public void AddPicture(PictureModel picture)
+    {
+        dbContext.Pictures.Add(picture);
+        dbContext.SaveChanges();
+    }
+
+    public List<PictureModel> GetPictures()
+    {
+        return dbContext.Pictures.ToList();
+    }
+}

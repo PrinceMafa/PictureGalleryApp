@@ -1,0 +1,20 @@
+public class UserRepository
+{
+    private readonly YourDbContext dbContext;
+
+    public UserRepository(YourDbContext dbContext)
+    {
+        this.dbContext = dbContext;
+    }
+
+    public void AddUser(UserModel user)
+    {
+        dbContext.Users.Add(user);
+        dbContext.SaveChanges();
+    }
+
+    public UserModel GetUserByUsername(string username)
+    {
+        return dbContext.Users.FirstOrDefault(u => u.Username == username);
+    }
+}

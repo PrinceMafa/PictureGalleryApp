@@ -1,0 +1,8 @@
+public class PictureModel
+{
+    public string FileName { get; set; }
+    public string Description { get; set; }
+    // Other metadata properties
+    public string Date { get; set}
+    public string Location {fet; set}
+}
