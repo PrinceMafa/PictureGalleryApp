@@ -1,0 +1,53 @@
+public class AccountController : Controller
+{
+    private UserRepository userRepository;
+
+    public AccountController()
+    {
+        userRepository = new UserRepository();
+    }
+
+    public ActionResult Login()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public ActionResult Login(UserModel user)
+    {
+        var existingUser = userRepository.GetUserByUsername(user.Username);
+        
+        if (existingUser != null && existingUser.Password == user.Password)
+        {
+            // Store user authentication information
+            FormsAuthentication.SetAuthCookie(user.Username, false);
+            return RedirectToAction("Index", "Home");
+        }
+        
+        ModelState.AddModelError("", "Invalid username or password");
+        return View();
+    }
+
+    public ActionResult Register()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public ActionResult Register(UserModel user)
+    {
+        if (ModelState.IsValid)
+        {
+            userRepository.AddUser(user);
+            return RedirectToAction("Login");
+        }
+        
+        return View();
+    }
+
+    public ActionResult Logout()
+    {
+        FormsAuthentication.SignOut();
+        return RedirectToAction("Login");
+    }
+}
